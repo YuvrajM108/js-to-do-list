@@ -11,28 +11,30 @@ class Task {
   new Task('Clean Living Room', 3)];
 }
 
-const sortTasks = (tasks) => {
-  for (let i = 0; i < tasks.length; i += 1) {
-    for (let j = 1; i < tasks.length; j += 1) {
-      if (tasks[j].index > tasks[j + 1].index) {
-        let secondTask = tasks[j];
-        tasks[j] = tasks[j + 1];
-        tasks[j + 1] = secondTask;
-      }
-    }
+const sortTasks = (tArr, n) => {
+  let i, key, j; 
+  for (i = 1; i < n; i += 1) { 
+    key = tArr[i]; 
+    j = i - 1; 
+    while (j >= 0 && tArr[j].index > key.index) { 
+      tArr[j + 1] = tArr[j]; 
+      j = j - 1; 
+    } 
+    tArr[j + 1] = key; 
   }
-  return tasks;
+  return tArr; 
 };
 
 const displayTasks = () => {
   const toDoList = document.getElementById('todo-list');
-  // let sortedTasks = sortTasks(Task.myTasks);
-  let sortedTasks = Task.myTasks;
+  let sortedTasks = sortTasks(Task.myTasks, Task.myTasks.length);
   for (let i = 0; i < sortedTasks.length; i += 1) {
     let li = document.createElement('li');
-    li.innerHTML = `${sortedTasks[i].description}`;
+    li.innerHTML = `<input type='checkbox' id='${sortedTasks[i].index}' class='${sortedTasks[i].index}'>
+    <h4 class='task-desc'>${sortedTasks[i].description}</h4>`;
+    li.setAttribute('class', 'task');
     toDoList.appendChild(li);
   }
 };
 
-window.onload = displayTasks();
+document.addEventListener('DOMContentLoaded', displayTasks());
