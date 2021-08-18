@@ -30,12 +30,15 @@ const sortTasks = (tArr, n) => {
 const displayTasks = () => {
   const toDoList = document.getElementById('todo-list');
   const sortedTasks = sortTasks(Task.myTasks, Task.myTasks.length);
-  for (let i = 0; i < sortedTasks.length; i += 1) {
-    const li = document.createElement('li');
-    li.innerHTML = `<input type='checkbox' id='${sortedTasks[i].index}' class='${sortedTasks[i].index}'>
-    <h4 class='task-desc'>${sortedTasks[i].description}</h4>`;
-    li.setAttribute('class', 'task');
-    toDoList.appendChild(li);
+  const ul = document.getElementById('todo-list');
+  if (ul.childElementCount < (sortedTasks.length + 1)) {
+    for (let i = 0; i < sortedTasks.length; i += 1) {
+      const li = document.createElement('li');
+      li.innerHTML = `<input type='checkbox' id='${sortedTasks[i].index}' class='${sortedTasks[i].index}'>
+      <h4 class='task-desc'>${sortedTasks[i].description}</h4>`;
+      li.setAttribute('class', 'task');
+      toDoList.appendChild(li);
+    }
   }
 };
 
