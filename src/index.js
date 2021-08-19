@@ -11,6 +11,10 @@ class Task {
     new Task('Clean Living Room', 3)];
 }
 
+if (localStorage.length > 0) {
+  Task.myTasks = JSON.parse(localStorage.myTasks);
+}
+
 const sortTasks = (tArr, n) => {
   let i;
   let key;
@@ -34,10 +38,30 @@ const displayTasks = () => {
   if (ul.childElementCount < (sortedTasks.length + 1)) {
     for (let i = 0; i < sortedTasks.length; i += 1) {
       const li = document.createElement('li');
-      li.innerHTML = `<input type='checkbox' id='${sortedTasks[i].index}' class='${sortedTasks[i].index}'>
-      <h4 class='task-desc'>${sortedTasks[i].description}</h4>`;
       li.setAttribute('class', 'task');
+      if (sortedTasks[i].completed) {
+        li.innerHTML = `<input type='checkbox' id='${sortedTasks[i].index}' class='${sortedTasks[i].index}' checked>
+        <h4 class='task-desc'>${sortedTasks[i].description}</h4>`;
+        li.classList.add('completed');
+      }
+      else {
+        li.innerHTML = `<input type='checkbox' id='${sortedTasks[i].index}' class='${sortedTasks[i].index}'>
+        <h4 class='task-desc'>${sortedTasks[i].description}</h4>`;
+      }
       toDoList.appendChild(li);
+      const checkbox = document.getElementById(sortedTasks[i].index);
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          li.classList.add('completed');
+          sortedTasks[i].completed = true;
+          localStorage.myTasks = JSON.stringify(Task.myTasks);
+        }
+        else {
+          li.classList.remove('completed');
+          sortedTasks[i].completed = false;
+          localStorage.myTasks = JSON.stringify(Task.myTasks);
+        }
+      });
     }
   }
 };
