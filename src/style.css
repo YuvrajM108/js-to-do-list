@@ -1,0 +1,25 @@
+ul.list {
+  list-style-type: none;
+}
+
+li.task {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: baseline;
+}
+
+li.header,
+li.task {
+  border-bottom: 1px solid lightgrey;
+}
+
+h4.task-desc,
+.list-header {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: normal;
+}
+
+h4.task-desc {
+  margin-left: 5px;
+}
