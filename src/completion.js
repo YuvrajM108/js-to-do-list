@@ -1,5 +1,4 @@
-import { Task } from './index.js';
-import { sortTasks } from './index.js';
+import { Task, sortTasks } from './index';
 
 export function completionMarker(cboxId, tIdx) {
   const tasks = sortTasks(Task.myTasks);
@@ -8,10 +7,9 @@ export function completionMarker(cboxId, tIdx) {
     cbox.parentElement.classList.add('completed');
     tasks[tIdx].completed = true;
     localStorage.myTasks = JSON.stringify(Task.myTasks);
-  }
-  else {
+  } else {
     cbox.parentElement.classList.remove('completed');
     tasks[tIdx].completed = false;
     localStorage.myTasks = JSON.stringify(Task.myTasks);
   }
-};
+}

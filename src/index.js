@@ -1,5 +1,5 @@
 import './style.css';
-import {completionMarker} from './completion.js';
+import { completionMarker } from './completion';
 
 class Task {
   constructor(description, index, completed = false) {
@@ -30,7 +30,7 @@ export function sortTasks(tArr, n) {
     tArr[j + 1] = key;
   }
   return tArr;
-};
+}
 
 const displayTasks = () => {
   const toDoList = document.getElementById('todo-list');
@@ -43,8 +43,7 @@ const displayTasks = () => {
         li.innerHTML = `<input type='checkbox' id='${sortedTasks[i].index}' checked>
         <h4 class='task-desc'>${sortedTasks[i].description}</h4>`;
         li.classList.add('completed');
-      }
-      else {
+      } else {
         li.innerHTML = `<input type='checkbox' id='${sortedTasks[i].index}'>
         <h4 class='task-desc'>${sortedTasks[i].description}</h4>`;
       }
