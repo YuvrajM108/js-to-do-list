@@ -1,35 +1,9 @@
 import './style.css';
 import { completionMarker } from './completion';
-
-class Task {
-  constructor(description, index, completed = false) {
-    this.description = description;
-    this.index = index;
-    this.completed = completed;
-  }
-
-  static myTasks = [new Task('Complete Homework', 1), new Task('Wash Dishes', 2),
-    new Task('Clean Living Room', 3)];
-}
+import { Task, sortTasks } from './task';
 
 if (localStorage.length > 0) {
   Task.myTasks = JSON.parse(localStorage.myTasks);
-}
-
-export function sortTasks(tArr, n) {
-  let i;
-  let key;
-  let j;
-  for (i = 1; i < n; i += 1) {
-    key = tArr[i];
-    j = i - 1;
-    while (j >= 0 && tArr[j].index > key.index) {
-      tArr[j + 1] = tArr[j];
-      j -= 1;
-    }
-    tArr[j + 1] = key;
-  }
-  return tArr;
 }
 
 const displayTasks = () => {
@@ -55,5 +29,3 @@ const displayTasks = () => {
 };
 
 document.addEventListener('DOMContentLoaded', displayTasks());
-
-export { Task };

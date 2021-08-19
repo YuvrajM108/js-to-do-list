@@ -1,4 +1,4 @@
-import { Task, sortTasks } from './index';
+import { Task, sortTasks } from './task';
 
 export function completionMarker(cboxId, tIdx) {
   const tasks = sortTasks(Task.myTasks);
