@@ -4,7 +4,7 @@ class Task {
     this.index = index;
     this.completed = completed;
   }
-  
+
   static myTasks = [new Task('Complete Homework', 1), new Task('Wash Dishes', 2),
     new Task('Clean Living Room', 3)];
 }
