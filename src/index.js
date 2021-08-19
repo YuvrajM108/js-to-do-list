@@ -1,4 +1,5 @@
 import './style.css';
+import {completionMarker} from './completion.js';
 
 class Task {
   constructor(description, index, completed = false) {
@@ -15,7 +16,7 @@ if (localStorage.length > 0) {
   Task.myTasks = JSON.parse(localStorage.myTasks);
 }
 
-const sortTasks = (tArr, n) => {
+export function sortTasks(tArr, n) {
   let i;
   let key;
   let j;
@@ -34,36 +35,26 @@ const sortTasks = (tArr, n) => {
 const displayTasks = () => {
   const toDoList = document.getElementById('todo-list');
   const sortedTasks = sortTasks(Task.myTasks, Task.myTasks.length);
-  const ul = document.getElementById('todo-list');
-  if (ul.childElementCount < (sortedTasks.length + 1)) {
+  if (toDoList.childElementCount < (sortedTasks.length + 1)) {
     for (let i = 0; i < sortedTasks.length; i += 1) {
       const li = document.createElement('li');
       li.setAttribute('class', 'task');
       if (sortedTasks[i].completed) {
-        li.innerHTML = `<input type='checkbox' id='${sortedTasks[i].index}' class='${sortedTasks[i].index}' checked>
+        li.innerHTML = `<input type='checkbox' id='${sortedTasks[i].index}' checked>
         <h4 class='task-desc'>${sortedTasks[i].description}</h4>`;
         li.classList.add('completed');
       }
       else {
-        li.innerHTML = `<input type='checkbox' id='${sortedTasks[i].index}' class='${sortedTasks[i].index}'>
+        li.innerHTML = `<input type='checkbox' id='${sortedTasks[i].index}'>
         <h4 class='task-desc'>${sortedTasks[i].description}</h4>`;
       }
       toDoList.appendChild(li);
-      const checkbox = document.getElementById(sortedTasks[i].index);
-      checkbox.addEventListener('change', () => {
-        if (checkbox.checked) {
-          li.classList.add('completed');
-          sortedTasks[i].completed = true;
-          localStorage.myTasks = JSON.stringify(Task.myTasks);
-        }
-        else {
-          li.classList.remove('completed');
-          sortedTasks[i].completed = false;
-          localStorage.myTasks = JSON.stringify(Task.myTasks);
-        }
-      });
+      const checkbox = document.getElementById(`${sortedTasks[i].index}`);
+      checkbox.addEventListener('change', () => completionMarker(sortedTasks[i].index, i));
     }
   }
 };
 
 document.addEventListener('DOMContentLoaded', displayTasks());
+
+export { Task };
