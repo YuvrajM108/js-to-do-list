@@ -10,6 +10,8 @@ This project is a JavaScript web application that acts as a to-do list which all
 - Mark tasks as completed.
 - Change the order in which tasks are listed.
 
+![Screenshot](images/screenshot.PNG)
+
 ## Built With
 
 - HTML

@@ -14,6 +14,11 @@ li.task {
   border-bottom: 1px solid lightgrey;
 }
 
+li.completed {
+  text-decoration: line-through;
+  color: lightgrey;
+}
+
 h4.task-desc,
 .list-header {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
