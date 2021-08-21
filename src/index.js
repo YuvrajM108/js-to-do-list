@@ -17,8 +17,7 @@ const displayTasks = () => {
       li.setAttribute('class', 'task');
       if (sortedTasks[i].completed) {
         li.innerHTML = `<div class='task-name' id='desc${sortedTasks[i].index}'><input type='checkbox' id='${sortedTasks[i].index}' checked>
-        <h4 class='task-desc'>${sortedTasks[i].description}</h4></div>`;
-        li.classList.add('completed');
+        <h4 class='task-desc completed'>${sortedTasks[i].description}</h4></div>`;
       } else {
         li.innerHTML = `<div class='task-name' id='desc${sortedTasks[i].index}'><input type='checkbox' id='${sortedTasks[i].index}'>
         <h4 class='task-desc'>${sortedTasks[i].description}</h4></div>`;
