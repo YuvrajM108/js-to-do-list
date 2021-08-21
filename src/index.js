@@ -1,8 +1,8 @@
 import './style.css';
 import { completionMarker } from './completion';
 import { Task, sortTasks } from './task';
-import { 
-  AddTask, clearCompletedTasks, editTaskDesc, removeTask 
+import {
+  AddTask, clearCompletedTasks, editTaskDesc, removeTask,
 } from './tasksList';
 
 if (localStorage.length > 0) {
