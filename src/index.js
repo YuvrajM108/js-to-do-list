@@ -8,6 +8,9 @@ if (localStorage.length > 0) {
 }
 
 const displayTasks = () => {
+  if (localStorage.length > 0) {
+    Task.myTasks = JSON.parse(localStorage.myTasks);
+  }
   const toDoList = document.getElementById('todo-list');
   const sortedTasks = sortTasks(Task.myTasks, Task.myTasks.length);
   if (toDoList.childElementCount < (sortedTasks.length)) {
