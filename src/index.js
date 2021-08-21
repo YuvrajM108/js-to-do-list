@@ -1,11 +1,20 @@
 import './style.css';
 import { completionMarker } from './completion';
 import { Task, sortTasks } from './task';
-import { AddTask, clearCompletedTasks, editTaskDesc, removeTask } from './tasksList';
+import { 
+  AddTask, clearCompletedTasks, editTaskDesc, removeTask 
+} from './tasksList';
 
 if (localStorage.length > 0) {
   Task.myTasks = JSON.parse(localStorage.myTasks);
 }
+
+const clearList = () => {
+  const toDoList = document.getElementById('todo-list');
+  while (toDoList.firstChild) {
+    toDoList.removeChild(toDoList.firstChild);
+  }
+};
 
 const displayTasks = () => {
   if (localStorage.length > 0) {
@@ -30,7 +39,7 @@ const displayTasks = () => {
       delButton.setAttribute('class', 'delete-btn');
       delButton.appendChild(delIcon);
       delButton.addEventListener('click', () => {
-        removeTask(sortedTasks[i].index)
+        removeTask(sortedTasks[i].index);
         clearList();
         displayTasks();
       });
@@ -62,7 +71,7 @@ const displayTasks = () => {
         taskDesc.style.display = 'none';
       });
       editField.addEventListener('keypress', (e) => {
-        if ('Enter' === e.key && editField.value !== sortedTasks[i].description) {
+        if (e.key === 'Enter' && editField.value !== sortedTasks[i].description) {
           editSubmit.click();
         }
       });
@@ -79,19 +88,12 @@ const displayTasks = () => {
   }
 };
 
-let newTaskSubmit = document.getElementById('submit-new-task');
-let newTaskInput = document.getElementById('description');
-let newTaskForm = document.getElementById('new-task');
-
-const clearList = () => {
-  const toDoList = document.getElementById('todo-list');
-  while (toDoList.firstChild) {
-    toDoList.removeChild(toDoList.firstChild);
-  }
-}
+const newTaskSubmit = document.getElementById('submit-new-task');
+const newTaskInput = document.getElementById('description');
+const newTaskForm = document.getElementById('new-task');
 
 newTaskInput.addEventListener('keypress', (e) => {
-  if ('Enter' === e.key && newTaskInput.value) {
+  if (e.key === 'Enter' && newTaskInput.value) {
     newTaskSubmit.click();
   }
 });
@@ -106,7 +108,7 @@ newTaskForm.addEventListener('submit', (e) => {
   }
 });
 
-let clearCompletedLink = document.getElementById('clear-completed-link');
+const clearCompletedLink = document.getElementById('clear-completed-link');
 
 clearCompletedLink.addEventListener('click', () => {
   clearCompletedTasks();
