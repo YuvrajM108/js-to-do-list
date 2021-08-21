@@ -5,8 +5,7 @@ class Task {
     this.completed = completed;
   }
 
-  static myTasks = [new Task('Complete Homework', 1), new Task('Wash Dishes', 2),
-    new Task('Clean Living Room', 3)];
+  static myTasks = [];
 }
 
 export function sortTasks(tArr, n) {
