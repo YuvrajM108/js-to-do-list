@@ -47,12 +47,8 @@ export function editTaskDesc(idx, desc) {
 }
 
 export function clearCompletedTasks() {
-  const completeTasks = Task.myTasks.filter(checkCompletion);
+  const completeTasks = Task.myTasks.filter(task => {return task.completed === true});
   for (let i = 0; i < completeTasks.length; i += 1) {
     removeTask(completeTasks[i].index);
   }
-}
-
-function checkCompletion(task) {
-  return task.completed;
 }

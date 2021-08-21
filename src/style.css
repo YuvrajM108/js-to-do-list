@@ -87,7 +87,7 @@ input.new-task {
 input.new-task:focus,
 input.edit-task:focus {
   outline: none;
-  background-color: none;
+  background-color: transparent;
 }
 
 button.submit-btn {
