@@ -1,16 +1,40 @@
-ul.list {
+ul.list,
+.top-list {
   list-style-type: none;
 }
 
+ul.list {
+  margin-top: 0;
+}
+
+ul.top-list {
+  margin-bottom: 0;
+}
+
 li.task {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+li.new-row {
   display: flex;
   flex-direction: row;
   justify-content: left;
   align-items: baseline;
 }
 
-li.header,
-li.task {
+.task-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: baseline;
+}
+
+li.top-item,
+li.task,
+.new-row {
   border-bottom: 1px solid lightgrey;
 }
 
@@ -27,4 +51,25 @@ h4.task-desc,
 
 h4.task-desc {
   margin-left: 5px;
+}
+
+form.new-task {
+  width: 100%;
+}
+
+input.new-task {
+  width: 100%;
+  border: none;
+  font-size: 16px;
+  font-style: italic;
+  padding: 10px 0 10px 0;
+}
+
+input:focus {
+  outline: none;
+  background-color: none;
+}
+
+button.submit-btn {
+  display: none;
 }

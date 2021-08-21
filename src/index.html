@@ -8,8 +8,17 @@
         <script defer="defer" src="main.js"></script>
     </head>
     <body>
+        <ul class="top-list">
+          <li class='top-item'><h4 class="list-header">Today's To Do</h4></li>
+          <li class='top-item'><form id="new-task">
+              <input class="new-task" type="text" id="description" name="description" placeholder="Add to your list...">            
+              <button type="submit" class="submit-btn" id="submit-new-task">↩</button>
+          </form></li>
+        </ul>
         <ul class="list" id="todo-list">
-          <li class="header"><h4 class="list-header">Today's To Do</h4></li>
+        </ul>
+        <ul>
+          <li><h4>Clear all completed</h4></li>
         </ul>
     </body>
 </html>
