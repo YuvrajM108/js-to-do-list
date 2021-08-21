@@ -45,3 +45,11 @@ export function editTaskDesc(idx, desc) {
     }
   }
 }
+
+export function clearCompletedTasks() {
+  const tasks = sortTasks(Task.myTasks, Task.myTasks.length);
+  const completeTasks = tasks.filter(task => task.completed);
+  for (let i = 0; i < completeTasks.length; i += 1) {
+    removeTask(completeTasks[i].index);
+  }
+}

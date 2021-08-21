@@ -1,8 +1,7 @@
 import './style.css';
 import { completionMarker } from './completion';
 import { Task, sortTasks } from './task';
-import { AddTask, editTaskDesc, removeTask } from './tasksList';
-import DeleteIcon from './delete-icon.png'
+import { AddTask, clearCompletedTasks, editTaskDesc, removeTask } from './tasksList';
 
 if (localStorage.length > 0) {
   Task.myTasks = JSON.parse(localStorage.myTasks);
@@ -39,13 +38,13 @@ const displayTasks = () => {
       const taskDescDiv = document.getElementById(`desc${sortedTasks[i].index}`);
       const taskDesc = taskDescDiv.lastChild;
       const editForm = document.createElement('form');
+      taskDescDiv.appendChild(editForm);
       editForm.setAttribute('id', `edit-task${sortedTasks[i].index}`);
-      editForm.setAttribute('class', 'edit-task')
+      editForm.setAttribute('class', 'edit-task');
       editForm.innerHTML = `<input class="edit-task" type="text" id="editDesc${sortedTasks[i].index}" name="description" 
         value="${sortedTasks[i].description}">
       <button type="submit" class="submit-btn" id="submit-edited-task${sortedTasks[i].index}">↩</button>`;
       editForm.style.display = 'none';
-      taskDescDiv.appendChild(editForm);
       const editField = editForm.firstChild;
       const editSubmit = document.getElementById(`submit-edited-task${sortedTasks[i].index}`);
       editForm.addEventListener('focusout', (event) => {
@@ -60,13 +59,13 @@ const displayTasks = () => {
         taskDesc.style.display = 'none';
       });
       editField.addEventListener('keypress', (e) => {
-        if ('Enter' === e.key && editField.value) {
+        if ('Enter' === e.key && editField.value !== sortedTasks[i].description) {
           editSubmit.click();
         }
       });
       editForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        if (editField.value) {
+        if (editField.value && editField.value !== sortedTasks[i].description) {
           editTaskDesc(sortedTasks[i].index, editField.value);
           editField.value = '';
           clearList();
@@ -102,6 +101,14 @@ newTaskForm.addEventListener('submit', (e) => {
     clearList();
     displayTasks();
   }
+});
+
+let clearCompletedLink = document.getElementById('clear-completed-link');
+
+clearCompletedLink.addEventListener('click', () => {
+  clearCompletedTasks();
+  clearList();
+  displayTasks();
 });
 
 document.addEventListener('DOMContentLoaded', displayTasks());
