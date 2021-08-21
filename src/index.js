@@ -23,10 +23,17 @@ const displayTasks = () => {
         li.innerHTML = `<div class='task-name' id='desc${sortedTasks[i].index}'><input type='checkbox' id='${sortedTasks[i].index}'>
         <h4 class='task-desc'>${sortedTasks[i].description}</h4></div>`;
       }
-      const delIcon = new Image(50, 50) ;
-      delIcon.src = DeleteIcon;
-      delIcon.addEventListener('click', () => removeTask(sortedTasks[i].index));
-      li.appendChild(delIcon);
+      const delIcon = document.createElement('i');
+      delIcon.setAttribute('class', 'far fa-trash-alt');
+      const delButton = document.createElement('a');
+      delButton.setAttribute('class', 'delete-btn');
+      delButton.appendChild(delIcon);
+      delButton.addEventListener('click', () => {
+        removeTask(sortedTasks[i].index)
+        clearList();
+        displayTasks();
+      });
+      li.appendChild(delButton);
       toDoList.appendChild(li);
       const checkbox = document.getElementById(`${sortedTasks[i].index}`);
       checkbox.addEventListener('change', () => completionMarker(sortedTasks[i].index, i));

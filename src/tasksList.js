@@ -18,7 +18,11 @@ export function removeTask(index) {
   let remTasks;
   for (let i = 0; i < tasks.length; i += 1) {
     if (tasks[i].index === index) {
-      remTasks = Task.myTasks.splice(i, (tasks.length - (i + 1)));
+      if (i === tasks.length - 1) {
+        remTasks = Task.myTasks.splice(i, 1);
+      } else {
+        remTasks = Task.myTasks.splice(i, (tasks.length - (i + 1)));
+      }
       break;
     }
   }

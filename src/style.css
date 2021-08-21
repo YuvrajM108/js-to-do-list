@@ -83,3 +83,11 @@ input.edit-task:focus {
 button.submit-btn {
   display: none;
 }
+
+a.delete-btn {
+  margin-right: 10px;
+}
+
+a.delete-btn:hover {
+  cursor: pointer;
+}
