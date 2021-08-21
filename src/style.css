@@ -57,15 +57,25 @@ form.new-task {
   width: 100%;
 }
 
-input.new-task {
+form.edit-task {
+  display: flex;
+  align-items: center;
+}
+
+input.new-task,
+.edit-task {
   width: 100%;
   border: none;
   font-size: 16px;
-  font-style: italic;
   padding: 10px 0 10px 0;
 }
 
-input:focus {
+input.new-task {
+  font-style: italic;
+}
+
+input.new-task:focus,
+input.edit-task:focus {
   outline: none;
   background-color: none;
 }

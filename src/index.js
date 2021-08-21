@@ -33,8 +33,9 @@ const displayTasks = () => {
       const taskDescDiv = document.getElementById(`desc${sortedTasks[i].index}`);
       const taskDesc = taskDescDiv.lastChild;
       const editForm = document.createElement('form');
-      editForm.setAttribute('id', 'edit-task');
-      editForm.innerHTML = `<input class="edit-task" type="text" id="editDesc" name="description" 
+      editForm.setAttribute('id', `edit-task${sortedTasks[i].index}`);
+      editForm.setAttribute('class', 'edit-task')
+      editForm.innerHTML = `<input class="edit-task" type="text" id="editDesc${sortedTasks[i].index}" name="description" 
         value="${sortedTasks[i].description}">
       <button type="submit" class="submit-btn" id="submit-edited-task${sortedTasks[i].index}">↩</button>`;
       editForm.style.display = 'none';
@@ -44,7 +45,6 @@ const displayTasks = () => {
       editForm.addEventListener('focusout', (event) => {
         event.preventDefault();
         editForm.style.display = 'none';
-        checkbox.style.display = 'block';
         taskDesc.style.display = 'block';
       });
       taskDesc.addEventListener('click', (event) => {
@@ -52,7 +52,6 @@ const displayTasks = () => {
         editForm.style.display = 'block';
         editField.focus();
         taskDesc.style.display = 'none';
-        checkbox.style.display = 'none';
       });
       editField.addEventListener('keypress', (e) => {
         if ('Enter' === e.key && editField.value) {
