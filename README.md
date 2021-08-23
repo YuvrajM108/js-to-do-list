@@ -18,6 +18,10 @@ This project is a JavaScript web application that acts as a to-do list which all
 - CSS
 - JavaScript
 
+## Live Demo
+
+If you would like to see a live demo of this project, please click on the following [link](https://yuvrajm108.github.io/js-to-do-list/index.html).
+
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps:
