@@ -15,24 +15,18 @@ export function AddTask(desc) {
 
 export function removeTask(index) {
   const tasks = sortTasks(Task.myTasks, Task.myTasks.length);
-  let remTasks;
+  let removedIdx;
   for (let i = 0; i < tasks.length; i += 1) {
     if (tasks[i].index === index) {
-      if (i === tasks.length - 1) {
-        remTasks = Task.myTasks.splice(i, 1);
-      } else {
-        remTasks = Task.myTasks.splice(i, (tasks.length - (i + 1)));
-      }
+      Task.myTasks.splice(i, 1);
+      removedIdx = i;
       break;
     }
   }
-  remTasks.splice(0, 1);
-  if (remTasks.length > 0) {
-    for (let j = 0; j < remTasks.length; j += 1) {
-      remTasks[j].index -= 1;
-    }
-    Task.myTasks.concat(remTasks);
+  for (let j = removedIdx; j < Task.myTasks.length; j += 1) {
+    Task.myTasks[j].index -= 1;
   }
+
   localStorage.myTasks = JSON.stringify(Task.myTasks);
 }
 
