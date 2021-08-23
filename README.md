@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet) ![](https://img.shields.io/badge/JavaScript-yellow)
 
-# JavaScript To-Do List - Review
+# JavaScript To-Do List
 
 This project is a JavaScript web application that acts as a to-do list which allows users to:
 

@@ -1,9 +1,6 @@
 import './style.css';
 import { completionMarker } from './completion';
 import { Task, sortTasks } from './task';
-import {
-  AddTask, clearCompletedTasks, editTaskDesc, removeTask,
-} from './tasksList';
 
 if (localStorage.length > 0) {
   Task.myTasks = JSON.parse(localStorage.myTasks);
@@ -39,7 +36,7 @@ const displayTasks = () => {
       delButton.setAttribute('class', 'delete-btn');
       delButton.appendChild(delIcon);
       delButton.addEventListener('click', () => {
-        removeTask(sortedTasks[i].index);
+        Task.removeTask(sortedTasks[i].index);
         clearList();
         displayTasks();
       });
@@ -78,7 +75,7 @@ const displayTasks = () => {
       editForm.addEventListener('submit', (e) => {
         e.preventDefault();
         if (editField.value && editField.value !== sortedTasks[i].description) {
-          editTaskDesc(sortedTasks[i].index, editField.value);
+          Task.editTaskDesc(sortedTasks[i].index, editField.value);
           editField.value = '';
           clearList();
           displayTasks();
@@ -101,7 +98,7 @@ newTaskInput.addEventListener('keypress', (e) => {
 newTaskForm.addEventListener('submit', (e) => {
   e.preventDefault();
   if (newTaskInput.value) {
-    AddTask(newTaskInput.value);
+    Task.AddTask(newTaskInput.value);
     newTaskInput.value = '';
     clearList();
     displayTasks();
@@ -111,7 +108,7 @@ newTaskForm.addEventListener('submit', (e) => {
 const clearCompletedLink = document.getElementById('clear-completed-link');
 
 clearCompletedLink.addEventListener('click', () => {
-  clearCompletedTasks();
+  Task.clearCompletedTasks();
   clearList();
   displayTasks();
 });
