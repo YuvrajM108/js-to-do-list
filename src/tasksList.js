@@ -26,7 +26,7 @@ export function removeTask(index) {
   for (let j = removedIdx; j < Task.myTasks.length; j += 1) {
     Task.myTasks[j].index -= 1;
   }
-  
+
   localStorage.myTasks = JSON.stringify(Task.myTasks);
 }
 
